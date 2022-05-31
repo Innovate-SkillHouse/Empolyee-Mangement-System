@@ -15,6 +15,7 @@ namespace Business
         {
             var alumnus = await alumniRepository.GetById(Id);
             return alumnus;
+
         }
     }
 }
