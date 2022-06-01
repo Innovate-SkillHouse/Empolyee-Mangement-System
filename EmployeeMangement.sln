@@ -9,11 +9,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement.Business
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EmployeeManagement.Repository", "EmployeeManagement-Repository\EmployeeManagement.Repository.csproj", "{8FA0659C-FD11-4E58-890B-E972E6302713}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database BackUp", "Database BackUp", "{9487EAD5-34E7-4EE7-8811-E0ACDF59B812}"
-	ProjectSection(SolutionItems) = preProject
-		C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\EmployeeManagement.bak = C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\Backup\EmployeeManagement.bak
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
