@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 #nullable disable
 
-namespace EmployeeManagement_Web
+namespace EmployeeManagement_Repository.Entities
 {
     public partial class EmployeeManagementContext : DbContext
     {
