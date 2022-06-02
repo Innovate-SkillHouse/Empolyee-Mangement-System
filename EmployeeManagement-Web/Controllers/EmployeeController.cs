@@ -13,6 +13,7 @@ namespace EmployeeManagement_Web.Controllers
         private readonly ILogger<EmployeeController> _logger;
         private readonly EmployeeBuisness employeeBusiness;
 
+
         public EmployeeController(ILogger<EmployeeController> logger)
         {
             _logger = logger;
