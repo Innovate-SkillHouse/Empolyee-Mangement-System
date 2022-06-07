@@ -1,4 +1,9 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
 using System.Net;
@@ -8,33 +13,31 @@ namespace EmployeeManagement_Business
     public class CompanyBuisness
     {
         private readonly CompanyRepository companyRepository;
+
         public CompanyBuisness()
         {
-            this.companyRepository = new CompanyRepository();
+            companyRepository =new CompanyRepository();
         }
 
-        public CompanyRepository GetCompanyRepository()
-        {
-            return companyRepository;
-        }
-
-     
-
-        public async Task<HttpStatusCode> SaveCompanyAsync(Company company)
-        {
+        public async Task<HttpStatusCode> CreateCompany(Company company)
+    {
             await companyRepository.Create(company);
+            return HttpStatusCode.OK;   
+    }
+        public async Task<HttpStatusCode> DeleteCompanyAsync(int Id)
+        {
+            await companyRepository.Delete(Id);
             return HttpStatusCode.OK;
 
         }
-
-        public Task<List<Company>> GetAllCompanyAsync()
+        public async Task<Company> GetCompanyAsync(int Id)
         {
-            throw new NotImplementedException();
+            var alumnus = await companyRepository.GetById(Id);
+            return alumnus;
         }
-
-        public Task GetAsync(int companyId)
+        public async Task<List<Company>> GetAllCompanyAsync()
         {
-            throw new NotImplementedException();
+            return await companyRepository.GetAllCompanyAsync();
         }
 
         public async Task<HttpStatusCode> UpdateCompanyAsync(Company company)
@@ -47,7 +50,7 @@ namespace EmployeeManagement_Business
         public Task GetCompanyAsync()
         {
             throw new NotImplementedException();
-        }
+    }
 
         public async Task<HttpStatusCode> DeleteCompanyAsync(int Id)
         {

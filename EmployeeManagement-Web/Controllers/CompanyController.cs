@@ -1,4 +1,5 @@
-﻿using EmployeeManagement_Business;
+﻿using System.Net;
+using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
@@ -11,53 +12,48 @@ namespace EmployeeManagement_Web.Controllers
     {
 
             private readonly ILogger<CompanyController> _logger;
-            private readonly CompanyBuisness companyBusiness;
+        private readonly CompanyBuisness companyBusiness;
         private int companyId;
 
-        public CompanyController(ILogger<CompanyController> logger)
-            {
-                _logger = logger;
-                companyBusiness = new CompanyBuisness();
-            }
-
-            [HttpGet("GetAllCompany")]
-            public async Task<List<Company>> GetAllCompany()
-            {
-                return await companyBusiness.GetAllCompanyAsync();
-            }
-
-        public CompanyBuisness GetCompanyBusiness()
+        public CompanyController()
         {
-            return companyBusiness;
+                _logger = logger;
+            companyBusiness = new CompanyBuisness();
         }
 
-       /* [HttpGet( "GetCompany")]
+        [HttpPost("CreateCompany")]
+        
+        public async Task<HttpStatusCode> CreateCompany(Company company)
+        {
+            return await companyBusiness.CreateCompany(company);
+        }
+        [HttpGet(Name = "GetCompany")]
         public async Task<IActionResult> GetById(int companyId)
         {
             var alumnus = await companyBusiness.GetCompanyAsync(companyId);
             return Ok(alumnus);
-        }*/
-        [HttpPost( "SaveCompany")]
-            public async Task<HttpStatusCode> SaveCompany(Company company)
-            {
-                return await companyBusinesCompanyAsync(company);
-            }
-
-        private Task<HttpStatusCode> companyBusinesCompanyAsync(Company company)
-        {
-            throw new NotImplementedException();
         }
-
-        [HttpPut( "UpdateCompany")]
-            public async Task<HttpStatusCode> UpdateCompany(Company company)
-            {
-                return await companyBusiness.UpdateCompanyAsync(company);
-            }
+        [HttpDelete(Name = "DeleteCompany")]
+        public async Task<IActionResult> DeleteById(int companyId)
+        {
+            var alumnus = await companyBusiness.DeleteCompanyAsync(companyId);
+            return Ok(alumnus);
+        }
+        [HttpGet("GetAllCompanies")]
+        public async Task<List<Company>> GetAllCompanies()
+        {
+            return await companyBusiness.GetAllCompanyAsync();
+        }
+        [HttpPut("UpdateCompany")]
+        public async Task<HttpStatusCode> UpdateCompany(Company company)
+        {
+            return await companyBusiness.UpdateCompanyAsync(company);
+        }
             [HttpDelete("DeleteCompany")]
             public async Task<IActionResult> DeleteById(Company company)
             {
                 var alumnus = await companyBusiness.DeleteCompanyAsync(companyId);
                 return Ok(alumnus);
             }
-        }
     }
+}

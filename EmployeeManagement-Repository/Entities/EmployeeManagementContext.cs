@@ -26,7 +26,7 @@ namespace EmployeeManagement_Repository.Entities
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=EmployeeManagement;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer("Server=LAPTOP-E37B9H3T\\SQLEXPRESS01;Database=EmployeeManagement;Trusted_Connection=True;");
             }
         }
 
@@ -38,9 +38,9 @@ namespace EmployeeManagement_Repository.Entities
             {
                 entity.ToTable("Company");
 
-                entity.Property(e => e.Address)
+                entity.Property(e => e.CompanyAddress)
                     .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(100)
                     .IsUnicode(false);
 
                 entity.Property(e => e.CompanyName)
@@ -48,14 +48,9 @@ namespace EmployeeManagement_Repository.Entities
                     .HasMaxLength(50)
                     .IsUnicode(false);
 
-                entity.Property(e => e.Country)
+                entity.Property(e => e.CompanyPhone)
                     .IsRequired()
-                    .HasMaxLength(50)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.State)
-                    .IsRequired()
-                    .HasMaxLength(50)
+                    .HasMaxLength(12)
                     .IsUnicode(false);
             });
 
@@ -103,19 +98,15 @@ namespace EmployeeManagement_Repository.Entities
             {
                 entity.ToTable("Project");
 
-                entity.Property(e => e.Duration)
+                entity.Property(e => e.ProjectDescription)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.EndDate).HasColumnType("datetime");
 
                 entity.Property(e => e.ProjectName)
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
-
-                entity.Property(e => e.StartDate).HasColumnType("datetime");
             });
 
             OnModelCreatingPartial(modelBuilder);

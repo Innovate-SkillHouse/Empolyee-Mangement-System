@@ -7,10 +7,9 @@ namespace EmployeeManagement_Repository.Entities
 {
     public partial class Company
     {
-        public int Id { get; set; }
+        public int CompanyId { get; set; }
         public string CompanyName { get; set; }
-        public string Address { get; set; }
-        public string State { get; set; }
-        public string Country { get; set; }
+        public string CompanyAddress { get; set; }
+        public string CompanyPhone { get; set; }
     }
 }
