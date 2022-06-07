@@ -8,5 +8,6 @@ namespace EmployeeManagement_Business
 {
     public class CompanyBuisness
     {
+
     }
 }
