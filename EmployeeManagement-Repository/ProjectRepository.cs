@@ -21,10 +21,10 @@ namespace EmployeeManagement_Repository
         }
         public async Task Update(Project project)
         {
-            var emp = dbContext.Projects.Where(h => h.ProjectId == project.ProjectId).FirstOrDefault();
-            if (project != null)
+            var pro = dbContext.Projects.Where(h => h.ProjectId == project.ProjectId).FirstOrDefault();
+            if (pro != null)
             {
-                emp.ProjectName = project.ProjectName; // update only changeable properties
+                pro.ProjectName = project.ProjectName; // update only changeable properties
                 await this.dbContext.SaveChangesAsync();
             }
         }
