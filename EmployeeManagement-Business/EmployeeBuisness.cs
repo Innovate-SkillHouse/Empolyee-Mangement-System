@@ -16,7 +16,6 @@ namespace EmployeeManagement_Business
         {
             var alumnus = await employeeRepository.GetById(Id);
             return alumnus;
-
         }
         public async Task<HttpStatusCode> SaveEmployeeAsync(Employee employee)
         {
