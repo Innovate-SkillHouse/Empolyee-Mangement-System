@@ -11,6 +11,5 @@ namespace EmployeeManagement_Repository.Entities
         public string ProjectName { get; set; }
         public string ProjectDescription { get; set; }
         public int ProjectDuration { get; set; }
-        
     }
 }
