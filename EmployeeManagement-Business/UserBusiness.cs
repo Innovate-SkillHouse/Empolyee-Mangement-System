@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement_Business
 {
-    internal class UserBusiness
+    public class UserBusiness
     {
+        public UserBusiness()
+        {
+                
+        }
     }
 }

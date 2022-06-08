@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagement_Repository
 {
-    internal class UserRepository
+    public class UserRepository
     {
+        public UserRepository()
+        {
+
+        }
     }
 }
