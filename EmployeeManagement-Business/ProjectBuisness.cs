@@ -12,20 +12,27 @@ namespace EmployeeManagement_Business
     public class ProjectBuisness
     {
         private readonly ProjectRepository projectRepository;
-        public ProjectBuisness(){
+        public ProjectBuisness()
+        {
             this.projectRepository = new ProjectRepository();
-            }
+        }
+        public async Task<List<Project>> GetAllProjectsAsync()
+        {
+            return await projectRepository.GetAllProjectsAsync();
+        }
         public async Task<Project> GetProjectAsync(int ProjectId)
         {
-            var alumnus = await projectRepository.GetById(ProjectId);
-            return alumnus;
+            var pro = await projectRepository.GetById(ProjectId);
+            return pro;
 
         }
         public async Task<HttpStatusCode> SaveProjectAsync(Project project)
         {
             await projectRepository.Create(project);
             return HttpStatusCode.OK;
+
         }
+
         public async Task<HttpStatusCode> UpdateProjectAsync(Project project)
         {
             await projectRepository.Update(project);
@@ -36,10 +43,6 @@ namespace EmployeeManagement_Business
         {
             await projectRepository.Delete(ProjectId);
             return HttpStatusCode.OK;
-        }
-        public async Task<List<Project>> GetAllProjectsAsync()
-        {
-            return await projectRepository.GetAllProjectsAsync();
         }
     }
 }
