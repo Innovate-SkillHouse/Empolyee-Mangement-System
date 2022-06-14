@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
-
 using System.Net;
+using Empolyee_Mangement.Data;
+using Empolyee_Mangement.Data.Models;
+using System.Web;
+using Newtonsoft.Json;
 
 namespace EmployeeManagement_Web.Controllers
 {
@@ -45,6 +48,12 @@ namespace EmployeeManagement_Web.Controllers
         {
             var usrs = await userBusiness.DeleteUserAsync(Id);
             return Ok(usrs);
+        }
+        [HttpPost("Login")]
+        public async Task<AuthenticationModel> Login(LoginModel loginmodel)
+        {
+            var login = await userBusiness.Login(loginmodel);
+            return login;
         }
     }
 }
