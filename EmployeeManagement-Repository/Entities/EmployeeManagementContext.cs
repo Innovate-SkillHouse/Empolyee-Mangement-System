@@ -93,6 +93,12 @@ namespace EmployeeManagement_Repository.Entities
                     .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.HasOne(d => d.Company)
+                    .WithMany(p => p.Employees)
+                    .HasForeignKey(d => d.CompanyId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Employee_Employee");
             });
 
             modelBuilder.Entity<Project>(entity =>
@@ -113,8 +119,6 @@ namespace EmployeeManagement_Repository.Entities
             modelBuilder.Entity<User>(entity =>
             {
                 entity.ToTable("User");
-
-                entity.Property(e => e.Id).ValueGeneratedNever();
 
                 entity.Property(e => e.FirstName)
                     .IsRequired()
