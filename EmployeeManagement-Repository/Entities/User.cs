@@ -16,8 +16,7 @@ namespace EmployeeManagement_Repository.Entities
         public string FirstName { get; set; }
         public string UserEmail { get; set; }
         public string Password { get; set; }
-        public string ProjectId { get; set; }
-        public string CompanyId { get; set; }
+ 
 
         public virtual ICollection<UserRole> UserRoles { get; set; }
     }

@@ -32,13 +32,16 @@ namespace EmployeeManagement_Business
         }
         public async Task<HttpStatusCode> SaveUserAsync(UserAddModel user)
         {
-            var usr=new User();
-            usr.FirstName=user.FirstName;
-            usr.UserEmail=user.UserEmail;
-            usr.Password=user.Password;
-            usr.CompanyId = user.CompanyId;
-            usr.ProjectId = user.ProjectId;
-             await userRepository.Create(usr);
+            var us = new User();
+            us.FirstName = user.FirstName;
+            us.UserEmail = user.UserEmail;
+            us.Password = user.Password;
+            await userRepository.Create(us);
+
+            var userRole = new UserRole();
+            userRole.UserId = us.Id;
+            userRole.RoleId = user.RoleId;
+            await userRoleRepository.Create(userRole);
             return HttpStatusCode.OK;
 
         }
