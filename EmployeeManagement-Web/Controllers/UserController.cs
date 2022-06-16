@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
+
 using System.Net;
 using Empolyee_Mangement.Data;
 using Empolyee_Mangement.Data.Models;
@@ -34,7 +35,7 @@ namespace EmployeeManagement_Web.Controllers
             return Ok(usrs);
         }
         [HttpPost(Name = "SaveUser")]
-        public async Task<HttpStatusCode> SaveUser(User user)
+        public async Task<HttpStatusCode> SaveUser(UserAddModel user)
         {
             return await userBusiness.SaveUserAsync(user);
         }
@@ -52,8 +53,17 @@ namespace EmployeeManagement_Web.Controllers
         [HttpPost("Login")]
         public async Task<AuthenticationModel> Login(LoginModel loginmodel)
         {
+
+            //var a = Request.Cookies["ss"];
+            //if(a != null)
+            //{
+            //   var b = JsonConvert.DeserializeObject<AuthenticationModel>(a);
+            //}
             var login = await userBusiness.Login(loginmodel);
-            return login;
+        await userBusiness.PopulateJwtTokenAsync(login);
+            var data = JsonConvert.SerializeObject(login);
+            Response.Cookies.Append("ss", data);
+                return login;
         }
     }
 }
