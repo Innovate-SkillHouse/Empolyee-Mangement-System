@@ -1,5 +1,6 @@
 ﻿using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
+using Empolyee_Mangement.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -32,7 +33,7 @@ namespace EmployeeManagement_Web.Controllers
             return Ok(alumnus);
         }
         [HttpPost(Name = "SaveEmployee")]
-        public async Task<HttpStatusCode> SaveEmployee(Employee employee)
+        public async Task<HttpStatusCode> SaveEmployee(EmployeeAddModel employee)
         {
             return await employeeBusiness.SaveEmployeeAsync(employee);
         }

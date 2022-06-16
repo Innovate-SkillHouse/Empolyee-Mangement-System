@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EmployeeManagement_Repository;
 using EmployeeManagement_Repository.Entities;
+using Empolyee_Mangement.Data.Models;
 
 namespace EmployeeManagement_Business
 {
@@ -18,9 +19,13 @@ namespace EmployeeManagement_Business
             companyRepository =new CompanyRepository();
         }
 
-        public async Task<HttpStatusCode> CreateCompany(Company company)
+        public async Task<HttpStatusCode> CreateCompany(CompanyAddModel company)
     {
-            await companyRepository.Create(company);
+            var comp = new Company();
+            comp.CompanyName = company.CompanyName;
+            comp.CompanyAddress = company.CompanyAddress;
+            comp.CompanyPhone = company.CompanyPhone;
+            await companyRepository.Create(comp);
             return HttpStatusCode.OK;   
     }
         public async Task<HttpStatusCode> DeleteCompanyAsync(int Id)

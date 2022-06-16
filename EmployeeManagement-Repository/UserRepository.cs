@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -48,6 +49,18 @@ namespace EmployeeManagement_Repository
         public async Task<List<User>> GetAllUserAsync()
         {
             return dbContext.Users.ToList();
+        }
+        public async Task<User> Login(string userEmail,string password)
+        {
+            var user = dbContext.Users.SingleOrDefault(x => x.UserEmail == userEmail && x.Password == password);
+            if(user!=null)
+            {
+                return user;
+            }
+            else
+            {
+                return user;
+            }
         }
     }
 }
