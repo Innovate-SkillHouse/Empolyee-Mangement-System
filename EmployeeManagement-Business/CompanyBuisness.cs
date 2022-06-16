@@ -42,9 +42,15 @@ namespace EmployeeManagement_Business
         {
             return await companyRepository.GetAllCompanyAsync();
         }
-        public async Task<HttpStatusCode> UpdateCompanyAsync(Company company)
+        public async Task<HttpStatusCode> UpdateCompanyAsync(CompanyUpdateModel company)
         {
-            await companyRepository.Update(company);
+            var comp = new Company();
+            comp.CompanyId= company.CompanyId;
+            comp.CompanyName = company.CompanyName;
+            comp.CompanyAddress = company.CompanyAddress;
+            comp.CompanyPhone = company.CompanyPhone;
+
+            await companyRepository.Update(comp);
             return HttpStatusCode.OK;
 
         }
