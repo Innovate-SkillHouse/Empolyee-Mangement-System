@@ -28,9 +28,15 @@ namespace EmployeeManagement_Business
             var usrs = await userRepository.GetById(Id);
             return usrs;
         }
-        public async Task<HttpStatusCode> SaveUserAsync(User user)
+        public async Task<HttpStatusCode> SaveUserAsync(UserAddModel user)
         {
-             await userRepository.Create(user);
+            var usr=new User();
+            usr.FirstName=user.FirstName;
+            usr.UserEmail=user.UserEmail;
+            usr.Password=user.Password;
+            usr.CompanyId = user.CompanyId;
+            usr.ProjectId = user.ProjectId;
+             await userRepository.Create(usr);
             return HttpStatusCode.OK;
 
         }

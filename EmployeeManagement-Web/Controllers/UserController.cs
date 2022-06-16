@@ -34,7 +34,7 @@ namespace EmployeeManagement_Web.Controllers
             return Ok(usrs);
         }
         [HttpPost(Name = "SaveUser")]
-        public async Task<HttpStatusCode> SaveUser(User user)
+        public async Task<HttpStatusCode> SaveUser(UserAddModel user)
         {
             return await userBusiness.SaveUserAsync(user);
         }

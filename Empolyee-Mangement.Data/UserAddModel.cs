@@ -1,17 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace EmployeeManagement_Repository.Entities
+namespace Empolyee_Mangement.Data
 {
-    public partial class User
+    public  class UserAddModel
     {
-        public int Id { get; set; }
         public string FirstName { get; set; }
         public string UserEmail { get; set; }
         public string Password { get; set; }
         public string ProjectId { get; set; }
         public string CompanyId { get; set; }
+
     }
 }
