@@ -1,6 +1,7 @@
 ﻿using System.Net;
 using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
+using Empolyee_Mangement.Data.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
@@ -22,8 +23,7 @@ namespace EmployeeManagement_Web.Controllers
         }
 
         [HttpPost("CreateCompany")]
-        
-        public async Task<HttpStatusCode> CreateCompany(Company company)
+        public async Task<HttpStatusCode> CreateCompany(CompanyAddModel company)
         {
             return await companyBusiness.CreateCompany(company);
         }
@@ -45,7 +45,7 @@ namespace EmployeeManagement_Web.Controllers
             return await companyBusiness.GetAllCompanyAsync();
         }
         [HttpPut("UpdateCompany")]
-        public async Task<HttpStatusCode> UpdateCompany(Company company)
+        public async Task<HttpStatusCode> UpdateCompany(CompanyUpdateModel company)
         {
             return await companyBusiness.UpdateCompanyAsync(company);
         }

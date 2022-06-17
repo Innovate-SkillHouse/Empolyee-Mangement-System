@@ -1,4 +1,5 @@
 ﻿using EmployeeManagement_Repository.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagement_Repository
 {
@@ -43,7 +44,7 @@ namespace EmployeeManagement_Repository
         }
         public async Task<List<Employee>> GetAllEmployeesAsync()
         {
-            return dbContext.Employees.ToList();
+            return dbContext.Employees.Include(x=>x.Company).ToList();
         }
     }
 }
