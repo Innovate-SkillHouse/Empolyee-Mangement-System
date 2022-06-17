@@ -44,7 +44,7 @@ namespace EmployeeManagement_Business
         {
             return await companyRepository.GetAllCompanyAsync();
         }
-        public async Task<HttpStatusCode> UpdateCompanyAsync(Company company)
+        public async Task<HttpStatusCode> UpdateCompanyAsync(CompanyUpdateModel company)
         {
             var comp = new Company();
             comp.CompanyId= company.CompanyId;
@@ -62,11 +62,7 @@ namespace EmployeeManagement_Business
             throw new NotImplementedException();
     }
 
-        public async Task<HttpStatusCode> DeleteCompanyAsync(int Id)
-        {
-            await companyRepository.Delete(Id);
-            return HttpStatusCode.OK;
-        }
+
         public async Task<List<Company>> GetAllCompaniesAsync()
         {
             return await companyRepository.GetAllCompaniesAsync();

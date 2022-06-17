@@ -12,13 +12,13 @@ namespace EmployeeManagement_Web.Controllers
     public class CompanyController : Controller
     {
 
-            private readonly ILogger<CompanyController> _logger;
+           
         private readonly CompanyBuisness companyBusiness;
         private int companyId;
 
         public CompanyController()
         {
-                _logger = logger;
+                
             companyBusiness = new CompanyBuisness();
         }
 

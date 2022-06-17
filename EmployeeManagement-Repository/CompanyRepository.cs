@@ -50,5 +50,10 @@ namespace EmployeeManagement_Repository
                 await this.dbContext.SaveChangesAsync();
             }
         }
+
+        public Task<List<Company>> GetAllCompaniesAsync()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
