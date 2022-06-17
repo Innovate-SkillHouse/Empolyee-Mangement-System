@@ -41,8 +41,7 @@ namespace EmployeeManagement_Business
             var userRole = new UserRole();
             userRole.UserId = us.Id;
             userRole.RoleId = user.RoleId;
-             await userRoleRepository.Create(userRole);
-
+            await userRoleRepository.Create(userRole);
             return HttpStatusCode.OK;
 
         }
