@@ -40,7 +40,7 @@ namespace EmployeeManagement_Web.Controllers
             return await companyBusiness.GetAllCompanyAsync();
         }
         [HttpPut("UpdateCompany")]
-        public async Task<HttpStatusCode> UpdateCompany(Company company)
+        public async Task<HttpStatusCode> UpdateCompany(CompanyUpdateModel company)
         {
             return await companyBusiness.UpdateCompanyAsync(company);
         }
