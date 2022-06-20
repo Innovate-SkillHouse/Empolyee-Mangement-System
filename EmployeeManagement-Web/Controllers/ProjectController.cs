@@ -7,7 +7,7 @@ namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class ProjectController : Controller
+    public class ProjectController : ApiBaseController
     {
 
 

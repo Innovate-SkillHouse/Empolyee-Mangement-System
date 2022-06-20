@@ -17,9 +17,11 @@ namespace EmployeeManagement_Business
     public class UserBusiness
     {
         private readonly UserRepository userRepository;
+        private readonly UserRoleRepository userRoleRepository;
         public UserBusiness()
         {
             this.userRepository = new UserRepository();
+            this.userRoleRepository = new UserRoleRepository();
         }
 
 
@@ -28,9 +30,19 @@ namespace EmployeeManagement_Business
             var usrs = await userRepository.GetById(Id);
             return usrs;
         }
-        public async Task<HttpStatusCode> SaveUserAsync(User user)
+        public async Task<HttpStatusCode> SaveUserAsync(UserAddModel user)
         {
-             await userRepository.Create(user);
+            var us = new User();
+            us.FirstName = user.FirstName;
+            us.UserEmail = user.UserEmail;
+            us.Password = user.Password;
+            await userRepository.Create(us);
+
+            var userRole = new UserRole();
+            userRole.UserId = us.Id;
+            userRole.RoleId = user.RoleId;
+             await userRoleRepository.Create(userRole);
+
             return HttpStatusCode.OK;
 
         }
@@ -52,12 +64,36 @@ namespace EmployeeManagement_Business
         public async Task<AuthenticationModel> Login(LoginModel loginmodel)
         {
             var login = await userRepository.Login(loginmodel.UserEmail, loginmodel.Password);
+            
             var authmodel = new AuthenticationModel();
-            authmodel.Name = login.FirstName;
-            authmodel.UserId = login.Id;
-            authmodel.Email = login.UserEmail;
-            return authmodel;
+            if (login != null)
+            {
+                authmodel.Name = login.FirstName;
+                authmodel.UserId = login.Id;
+                authmodel.Email = login.UserEmail;
+                return authmodel;
+            }
+           
+            return null;
         }
-        
+        public async Task PopulateJwtTokenAsync(AuthenticationModel authModel)
+        {
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes("!@#$%^&*()!@#$%^&*()");
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(new Claim[]
+                {
+                        new Claim(ClaimTypes.NameIdentifier, authModel.UserId.ToString()),
+                        new Claim(ClaimTypes.Email, authModel.Email.ToString()),
+                        new Claim(ClaimTypes.Name, authModel.Name.ToString())
+                }),
+                Expires = authModel.TokenExpiryDate = DateTime.UtcNow.AddMinutes(50),
+                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature),
+            };
+
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            authModel.Token = tokenHandler.WriteToken(token);
+        }
     }
 }

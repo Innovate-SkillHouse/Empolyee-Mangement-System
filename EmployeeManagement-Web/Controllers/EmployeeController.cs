@@ -8,7 +8,7 @@ namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class EmployeeController : Controller
+    public class EmployeeController : ApiBaseController
     {
 
         private readonly ILogger<EmployeeController> _logger;

@@ -1,17 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using EmployeeManagement_Business;
 using EmployeeManagement_Repository.Entities;
+
 using System.Net;
 using Empolyee_Mangement.Data;
 using Empolyee_Mangement.Data.Models;
 using System.Web;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
-    public class UserController : Controller
+    [Route("user")]
+    public class UserController : ApiBaseController
     {
         private readonly ILogger<UserController> _logger;
         private readonly UserBusiness userBusiness;
@@ -34,7 +36,7 @@ namespace EmployeeManagement_Web.Controllers
             return Ok(usrs);
         }
         [HttpPost(Name = "SaveUser")]
-        public async Task<HttpStatusCode> SaveUser(User user)
+        public async Task<HttpStatusCode> SaveUser(UserAddModel user)
         {
             return await userBusiness.SaveUserAsync(user);
         }
@@ -49,11 +51,25 @@ namespace EmployeeManagement_Web.Controllers
             var usrs = await userBusiness.DeleteUserAsync(Id);
             return Ok(usrs);
         }
+        [AllowAnonymous]
         [HttpPost("Login")]
-        public async Task<AuthenticationModel> Login(LoginModel loginmodel)
+        public async Task<IActionResult> Login(LoginModel loginmodel)
         {
+
             var login = await userBusiness.Login(loginmodel);
-            return login;
+            if(login != null)
+            {
+                await userBusiness.PopulateJwtTokenAsync(login);
+                var data = JsonConvert.SerializeObject(login);
+                Response.Cookies.Append("ss", data);
+                return Ok(login);
+            }
+            else
+            {
+                return BadRequest();
+            }
+    
+                
         }
     }
 }
