@@ -60,8 +60,7 @@ namespace EmployeeManagement_Web.Controllers
             if(login != null)
             {
                 await userBusiness.PopulateJwtTokenAsync(login);
-                var data = JsonConvert.SerializeObject(login);
-                Response.Cookies.Append("ss", data);
+               
                 return Ok(login);
             }
             else
