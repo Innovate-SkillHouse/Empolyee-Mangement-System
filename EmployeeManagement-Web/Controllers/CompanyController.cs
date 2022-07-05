@@ -8,7 +8,7 @@ namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class CompanyController : Controller
+    public class CompanyController : ApiBaseController
     {
         private readonly CompanyBuisness companyBusiness;
 

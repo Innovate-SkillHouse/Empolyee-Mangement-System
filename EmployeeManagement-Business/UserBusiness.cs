@@ -41,7 +41,8 @@ namespace EmployeeManagement_Business
             var userRole = new UserRole();
             userRole.UserId = us.Id;
             userRole.RoleId = user.RoleId;
-            await userRoleRepository.Create(userRole);
+             await userRoleRepository.Create(userRole);
+
             return HttpStatusCode.OK;
 
         }
@@ -63,11 +64,17 @@ namespace EmployeeManagement_Business
         public async Task<AuthenticationModel> Login(LoginModel loginmodel)
         {
             var login = await userRepository.Login(loginmodel.UserEmail, loginmodel.Password);
+            
             var authmodel = new AuthenticationModel();
-            authmodel.Name = login.FirstName;
-            authmodel.UserId = login.Id;
-            authmodel.Email = login.UserEmail;
-            return authmodel;
+            if (login != null)
+            {
+                authmodel.Name = login.FirstName;
+                authmodel.UserId = login.Id;
+                authmodel.Email = login.UserEmail;
+                return authmodel;
+            }
+           
+            return null;
         }
         public async Task PopulateJwtTokenAsync(AuthenticationModel authModel)
         {
