@@ -43,7 +43,7 @@ builder.Services.AddSwaggerGen(options =>
     options.SwaggerDoc("v1", new OpenApiInfo
     {
         Version = "v1",
-        Title = "NGO API",
+        Title = "Empolyee Mangement API",
         Description = "An ASP.NET Core Web API for managing ToDo items",
         TermsOfService = null,
     });
@@ -78,6 +78,7 @@ builder.Services.AddSwaggerGen(options =>
         });
 
 });
+
 var key = Encoding.ASCII.GetBytes(configRoot.AppSettings.Secret);
 builder.Services.AddAuthentication(x =>
 {
@@ -158,14 +159,8 @@ app.UseEndpoints(endpoints =>
 app.UseSpa(spa =>
 {
     spa.Options.SourcePath = "ClientApp";
-
-    if (app.Environment.IsDevelopment())
-    {
-        spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-
-        // NOTE: Disable above line and enable below line to trigger angular from dev server.
-        //spa.UseAngularCliServer(npmScript: "start");
-    }
+    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
 });
+
 app.Run();
 
