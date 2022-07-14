@@ -27,7 +27,7 @@ export class AuthenticationService {
                 //return user;
             }));
     }
-    setUserContext(user: AuthModel) {
+  setUserContext(user: AuthModel) {
         this.currentUserSubject.next(user);
     }
 

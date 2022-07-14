@@ -7,7 +7,7 @@ using System.Net;
 namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Employee")]
     public class EmployeeController : ApiBaseController
     {
 
@@ -32,6 +32,7 @@ namespace EmployeeManagement_Web.Controllers
             var alumnus = await employeeBusiness.GetEmployeeAsync(employeeId);
             return Ok(alumnus);
         }
+        
         [HttpPost(Name = "SaveEmployee")]
         public async Task<HttpStatusCode> SaveEmployee(EmployeeAddModel employee)
         {
