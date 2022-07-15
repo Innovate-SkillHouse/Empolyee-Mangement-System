@@ -41,6 +41,15 @@ export class AuthenticationService {
         //this.currentUserSubject.next(null);
         this.router.navigate(['/login'])
     }
-    
+    // getUserById(id: number): Observable<User> {
+    //     return this.http.get<User>(UserURLConstants.GET_USER_BY_ID_URL, { params: { 'id': id } })
+    // }
+
+    // [HttpGet]
+    //     [Route("GetUserById")]
+    //     public async Task<UserModel> GetUserById(int id)
+    //     {
+    //         return await this._userBusiness.GetUserById(id);
+    //     }
 
 }
