@@ -18,6 +18,7 @@ import { JwtInterceptor } from './core/service/jwt.interceptor';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule
+    
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent]

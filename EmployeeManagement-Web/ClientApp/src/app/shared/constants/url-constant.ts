@@ -7,3 +7,11 @@ export class LoginURLConstants {
 export class USERURLConstants {
     static GETALL = apiUrl + '/user/GetAllUser';
 }
+export class EmployeeURLConstants{
+    static GETALL = apiUrl +'/Employee/GetAllEmployee'
+    static SAVEEMP=apiUrl+'/Employee'
+    static DELETE=apiUrl+'/Employee';
+    static GET=apiUrl+'/Employee';
+    static UPDATE=apiUrl+'/Employee';
+
+}
