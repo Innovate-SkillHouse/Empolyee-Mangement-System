@@ -13,7 +13,7 @@ export class CompanyService {
    GetAllCompany(){
     debugger
     return this.http.get<any>(CompanyURLConstants.GETALL)
-}
+} 
 saveCompany(comaddmodel:any){
   debugger
   return this.http.post<any>(CompanyURLConstants.SAVECMP,comaddmodel)

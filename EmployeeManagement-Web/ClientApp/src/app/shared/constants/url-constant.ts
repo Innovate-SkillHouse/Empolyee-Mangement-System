@@ -9,7 +9,7 @@ export class USERURLConstants {
 }
 export class EmpolyeeURLConstants {
     static GETALL = apiUrl + '/Empolyee/GetAllEmployee';
-    static DELETE=apiUrl+'/Empolyee';
+    static DELETE=apiUrl+'/Empolyee'; 
     static GETBYID=apiUrl+'/Empolyee';
     static SAVEEMP=apiUrl+'/Empolyee';
     static UPDATEEMP=apiUrl+'/Empolyee';
