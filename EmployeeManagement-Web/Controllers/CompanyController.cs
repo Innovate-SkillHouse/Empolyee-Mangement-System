@@ -17,7 +17,7 @@ namespace EmployeeManagement_Web.Controllers
             companyBusiness = new CompanyBuisness();
         }
 
-        [HttpPost("CreateCompany")]
+        [HttpPost(Name ="CreateCompany")]
         public async Task<HttpStatusCode> CreateCompany(CompanyAddModel company)
         {
             return await companyBusiness.CreateCompany(company);
@@ -39,7 +39,7 @@ namespace EmployeeManagement_Web.Controllers
         {
             return await companyBusiness.GetAllCompanyAsync();
         }
-        [HttpPut("UpdateCompany")]
+        [HttpPut(Name ="UpdateCompany")]
         public async Task<HttpStatusCode> UpdateCompany(CompanyUpdateModel company)
         {
             return await companyBusiness.UpdateCompanyAsync(company);
