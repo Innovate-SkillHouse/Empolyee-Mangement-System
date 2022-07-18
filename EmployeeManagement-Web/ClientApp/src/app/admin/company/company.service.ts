@@ -26,7 +26,7 @@ deleteCompany(companyId:number){
   return this.http.delete<any>(CompanyURLConstants.DELETE,{params:{'companyId':companyId}})
 }
 updateCompany(company:any)
-{
+{ 
     return this.http.put<any>(CompanyURLConstants.UPDATECMP,company)
 }
 }
