@@ -9,8 +9,15 @@ export class USERURLConstants {
 }
 export class EmpolyeeURLConstants {
     static GETALL = apiUrl + '/Empolyee/GetAllEmployee';
-    static DELETE=apiUrl+'/Empolyee';
+    static DELETE=apiUrl+'/Empolyee';  
     static GETBYID=apiUrl+'/Empolyee';
     static SAVEEMP=apiUrl+'/Empolyee';
     static UPDATEEMP=apiUrl+'/Empolyee';
+}
+export class CompanyURLConstants{
+    static GETALL=apiUrl+'/Company/GetAllCompanies';
+    static SAVECMP=apiUrl+'/Company';
+    static GETBYID=apiUrl+'/Company';
+    static DELETE=apiUrl+'/Company';
+    static UPDATECMP=apiUrl+'/Company';
 }

@@ -143,23 +143,16 @@
                       </th>
                     </tr>
                   </thead>
-
                   <tbody>
-                    
                     <tr *ngFor="let emp of empolyeedata"class="even pointer">
                       <td class=" ">{{emp.id}}</td>
                       <td class=" ">{{emp.firstName}}</td>
-                     
                       <td class=" ">{{emp.lastName}}</td>
                       <td>
                         <button class="btn btn-primary" (click)="onDelete(emp.id)"type="reset">Delete</button>
                         <button class="btn btn-primary" (click)="onEdit(emp.id)"type="reset">Edit</button>
                       </td>
-                      
                     </tr>
-                   
-                    
-                    
                   </tbody>
                 </table>
               </div>
