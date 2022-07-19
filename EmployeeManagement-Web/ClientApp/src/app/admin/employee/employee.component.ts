@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmpolyeeService } from './empolyee.service';
 
 @Component({
@@ -32,12 +32,12 @@ export class EmployeeComponent implements OnInit {
   }
   getAllEmpolyee() {
     this.empolyeeService.getAllEmploye().subscribe((data) => {
-      debugger
+    
       this.empolyeedata = data;
     })
   }
   Submit() {
-    debugger
+
     if (this.employeeAddForm.invalid)
       return;
 
@@ -98,7 +98,7 @@ export class EmployeeComponent implements OnInit {
   }
   onEdit(id: number) {
     this.empolyeeService.getEmpolyeeById(id).subscribe(data => {
-      debugger
+      
       
       this.employeeAddForm.patchValue(data);
 
