@@ -64,7 +64,12 @@ export class CompanyComponent implements OnInit {
     }
   }
   searchByName(){
+    if(this.SearchText!=""){
     this.companydata=this.companydata.filter((x:any)=>x.companyName==this.SearchText);
+  }
+  else{
+    this.GetAllCompanies();
+  }
   }
   onDelete(companyId:number){
     this.companyService.deleteCompany(companyId).subscribe(data=>{
