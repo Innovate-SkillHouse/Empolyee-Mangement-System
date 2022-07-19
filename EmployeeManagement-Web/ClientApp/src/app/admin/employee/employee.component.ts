@@ -41,7 +41,7 @@ export class EmployeeComponent implements OnInit {
 
    
 
-    if(this.employeeAddForm.value.id==null)
+    if(this.employeeAddForm.value.id==null||this.employeeAddForm.value.id=="")
     {
       var empaddmodel = {
         firstName: this.employeeAddForm.value.firstName,
