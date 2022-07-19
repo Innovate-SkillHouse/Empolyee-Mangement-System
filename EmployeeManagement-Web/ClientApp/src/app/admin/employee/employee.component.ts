@@ -15,7 +15,8 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.SearchText="",
+
+    this.SearchText="";
     this.employeeAddForm = this.formBuilder.group({
       id:[""],
       firstName: ["", Validators.required],
@@ -42,7 +43,7 @@ export class EmployeeComponent implements OnInit {
 
    
 
-    if(this.employeeAddForm.value.id==null)
+    if(this.employeeAddForm.value.id==null||this.employeeAddForm.value.id=="")
     {
       var empaddmodel = {
         firstName: this.employeeAddForm.value.firstName,
@@ -78,8 +79,14 @@ export class EmployeeComponent implements OnInit {
     }
   }
     searchByName(){
+      if(this.SearchText!=""){
       this.empolyeedata=this.empolyeedata.filter((x:any)=>x.firstName==this.SearchText);
+      }
+      else{
+        this.getAllEmpolyee();
+      }
     }
+
     
 
   
