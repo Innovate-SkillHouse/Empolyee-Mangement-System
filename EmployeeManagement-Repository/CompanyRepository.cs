@@ -47,7 +47,11 @@ namespace EmployeeManagement_Repository
             if (comp != null)
             {
                 comp.CompanyName = company.CompanyName; 
+                comp.CompanyAddress = company.CompanyAddress;
+                comp.CompanyPhone = company.CompanyPhone;
+              
                 await this.dbContext.SaveChangesAsync();
+                
             }
         }
     }
