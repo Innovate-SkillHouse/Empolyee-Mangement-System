@@ -8,10 +8,12 @@
           <form [formGroup]="loginForm" (ngSubmit)="login()">
             <h1>Login Form</h1>
             <div>
-              <input class="form-control" formControlName="username" placeholder="Username" type="text">
+              <input class="form-control" formControlName="username" placeholder="Email" type="email">
+              <p *ngIf="f.username.errors?.['required']"class="text-danger">email is required</p>
             </div>
             <div>
               <input class="form-control" formControlName="password" placeholder="Password" type="password">
+              <p *ngIf="f.password.errors?.['required']"class="text-danger">password is required</p>
             </div>
             <p *ngIf="Invalid" class="text-danger">Incorrect username or password</p>
             <div>
