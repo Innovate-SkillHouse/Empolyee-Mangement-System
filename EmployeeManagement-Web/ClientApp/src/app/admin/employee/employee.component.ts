@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmpolyeeService } from './empolyee.service';
 
 @Component({
@@ -10,11 +10,13 @@ import { EmpolyeeService } from './empolyee.service';
 export class EmployeeComponent implements OnInit {
   empolyeedata: any = [];
   employeeAddForm!: FormGroup;
+  SearchText="";
   constructor(private empolyeeService: EmpolyeeService, private formBuilder: FormBuilder) {
   }
 
   ngOnInit(): void {
-    debugger
+
+    this.SearchText="";
     this.employeeAddForm = this.formBuilder.group({
       id:[""],
       firstName: ["", Validators.required],
@@ -30,12 +32,12 @@ export class EmployeeComponent implements OnInit {
   }
   getAllEmpolyee() {
     this.empolyeeService.getAllEmploye().subscribe((data) => {
-      debugger
+    
       this.empolyeedata = data;
     })
   }
   Submit() {
-    debugger
+
     if (this.employeeAddForm.invalid)
       return;
 
@@ -75,10 +77,19 @@ export class EmployeeComponent implements OnInit {
       this.resetForm();
      })
     }
+  }
+    searchByName(){
+      if(this.SearchText!=""){
+      this.empolyeedata=this.empolyeedata.filter((x:any)=>x.firstName==this.SearchText);
+      }
+      else{
+        this.getAllEmpolyee();
+      }
+    }
 
     
 
-  }
+  
   onDelete(id: number) {
     this.empolyeeService.deleteEmpolyeeById(id).subscribe(data => {
       this.getAllEmpolyee();
@@ -87,7 +98,7 @@ export class EmployeeComponent implements OnInit {
   }
   onEdit(id: number) {
     this.empolyeeService.getEmpolyeeById(id).subscribe(data => {
-      debugger
+      
       
       this.employeeAddForm.patchValue(data);
 

@@ -46,9 +46,9 @@
                 <div class="title_right">
                   <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
                     <div class="input-group">
-                      <input type="text" class="form-control" placeholder="Search for...">
+                      <input type="text" class="form-control" [(ngModel)]="SearchText" placeholder="Search for...">
                       <span class="input-group-btn">
-                        <button class="btn btn-default" type="button">Go!</button>
+                        <button class="btn btn-default" (click)="searchByName()" type="button">Go!</button>
                       </span>
                     </div>
                   </div>
@@ -98,6 +98,7 @@
                               <th class="column-title"> ID </th>
                               <th class="column-title">Name </th>
                               <th class="column-title">Address</th>
+                              <th class="column-title">Phone</th>
                               <th class="column-title">Action </th>
                               <!-- <th class="column-title no-link last"><span class="nobr">Action</span>
                               </th> -->
@@ -113,6 +114,7 @@
                               <td class=" ">{{com.companyId}}</td>
                               <td class=" ">{{com.companyName}}</td>
                               <td class=" ">{{com.companyAddress}}</td>
+                              <td class=" ">{{com.companyPhone}}</td>
                               <td>
                                 <button class="btn btn-primary" (click)="onDelete(com.companyId)"type="reset">Delete</button>
                                 <button class="btn btn-primary" (click)="onEdit(com.companyId)"type="reset">Edit</button>
