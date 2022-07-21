@@ -100,7 +100,7 @@ export class EmployeeComponent implements OnInit {
 
     
 
-  
+  }
   onDelete(id: number) {
     this.empolyeeService.deleteEmpolyeeById(id).subscribe(data => {
       this.getAllEmpolyee();
