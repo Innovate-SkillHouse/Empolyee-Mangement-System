@@ -77,6 +77,15 @@ export class EmployeeComponent implements OnInit {
       this.resetForm();
      })
     }
+  }
+    searchByName(){
+      if(this.SearchText!=""){
+      this.empolyeedata=this.empolyeedata.filter((x:any)=>x.firstName==this.SearchText);
+      }
+      else{
+        this.getAllEmpolyee();
+      }
+    }
 
     
 
