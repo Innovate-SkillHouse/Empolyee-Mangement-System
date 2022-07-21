@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CompanyService } from '../company/company.service';
 import { EmpolyeeService } from './empolyee.service';
 
 @Component({
@@ -9,9 +10,10 @@ import { EmpolyeeService } from './empolyee.service';
 })
 export class EmployeeComponent implements OnInit {
   empolyeedata: any = [];
+  companydata:any=[];
   employeeAddForm!: FormGroup;
   SearchText="";
-  constructor(private empolyeeService: EmpolyeeService, private formBuilder: FormBuilder) {
+  constructor(private empolyeeService: EmpolyeeService, private formBuilder: FormBuilder, private companyService :CompanyService) {
   }
 
   ngOnInit(): void {
@@ -29,6 +31,12 @@ export class EmployeeComponent implements OnInit {
       companyId: ["", Validators.required],
     });
     this.getAllEmpolyee();
+    this.getAllCompany();
+  }
+  getAllCompany(){
+    this.companyService.GetAllCompany().subscribe((data)=>{
+      this.companydata=data;
+    })
   }
   getAllEmpolyee() {
     this.empolyeeService.getAllEmploye().subscribe((data) => {
@@ -62,6 +70,7 @@ export class EmployeeComponent implements OnInit {
     }
     else{
       var empUpdatemodel = {
+        
         Id:this.employeeAddForm.value.id,
         firstName: this.employeeAddForm.value.firstName,
         lastName: this.employeeAddForm.value.lastName,
@@ -72,8 +81,10 @@ export class EmployeeComponent implements OnInit {
         dateModified: this.employeeAddForm.value.dateModified,
         companyId: this.employeeAddForm.value.companyId
       }
+      
      this.empolyeeService.updateEmpolyee(empUpdatemodel).subscribe(data=>{
       this.getAllEmpolyee();
+      
       this.resetForm();
      })
     }
@@ -113,6 +124,6 @@ export class EmployeeComponent implements OnInit {
     this.employeeAddForm.value.phone=''
     this.employeeAddForm.value.dateCreated=''
      this.employeeAddForm.value.dateModified=''
-    this.employeeAddForm.value.companyId==''
+    this.employeeAddForm.value.companyId=''
   }
 }
