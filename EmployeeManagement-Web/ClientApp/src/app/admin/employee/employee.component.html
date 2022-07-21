@@ -12,6 +12,7 @@
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <input type="text" id="first-name" required="required" formControlName="firstName" class="form-control col-md-7 col-xs-12">
+        <div style="color: red"*ngIf="val.firstName.errors?.['required']">First Name is required</div>
         </div>
       </div>
       <div class="form-group">
@@ -19,12 +20,14 @@
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <input type="text" id="last-name" name="last-name" formControlName="lastName" required="required" class="form-control col-md-7 col-xs-12">
+          <div style="color: red" *ngIf="val.lastName.errors?.['required']">Last Name is required</div>
         </div>
       </div>
       <div class="form-group">
         <label  class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <input id="Email" class="form-control col-md-7 col-xs-12" formControlName="email" type="text" >
+          <div style="color: red" *ngIf="val.email.errors?.['email']">email is required</div>
         </div>
       </div>
   
@@ -33,6 +36,7 @@
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <input id="Gender" formControlName="gender" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+          <div style="color: red" *ngIf="val.gender.errors?.['required']">Gender is required</div>
         </div>
       </div>
       <div class="form-group">
@@ -40,6 +44,7 @@
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <input id="Gender" formControlName="phone" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+          <div style="color: red" *ngIf="val.phone.errors?.['pattern']">Phone number is Required(minimum length 10,numbers are only allowed)</div>
         </div>
       </div>
       <div class="form-group">
@@ -47,6 +52,7 @@
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <input id="Gender" formControlName="dateCreated" class="date-picker form-control col-md-7 col-xs-12" required="required" type="date">
+          <div style="color: red" *ngIf="val.dateCreated.errors?.['required']">Date Created is required</div>
         </div>
       </div>
       <div class="form-group">
@@ -54,17 +60,17 @@
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <input id="Gender" formControlName="dateModified" class="date-picker form-control col-md-7 col-xs-12" required="required" type="date">
+          <div style="color: red"  *ngIf="val.dateModified.errors?.['required']">Modified date is required</div>
         </div>
       </div>
       <div class="form-group">
         <label class="control-label col-md-3 col-sm-3 col-xs-12" >Company Name<span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-        <select formControlName="companyId" class="form-control">
-          <option *ngFor="let cmp of companydata" value="{{cmp.companyId}}" >{{cmp.companyName}}</option>
-        </select>
+          <input id="Gender" formControlName="companyId" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+          <div style="color: red" *ngIf="val.companyId.errors?.['pattern']">Company id is required</div>
+        </div>
       </div>
-    </div>
       <div class="ln_solid"></div>
       <div class="form-group">
         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
@@ -136,6 +142,7 @@
                     <tr class="headings">
                       <th class="column-title">Empolyee ID </th> 
                       <th class="column-title">FirstName </th>
+                      <th class="column-title">Company Id</th>
                       <th class="column-title">LastName </th>
                       <th class="column-title">Action </th>
                       <!-- <th class="column-title no-link last"><span class="nobr">Action</span>
@@ -150,6 +157,7 @@
                       <td class=" ">{{emp.id}}</td>
                       <td class=" ">{{emp.firstName}}</td>
                       <td class=" ">{{emp.lastName}}</td>
+                      <td class=" ">{{emp.companyId}}</td>
                       <td>
                         <button class="btn btn-primary" (click)="onDelete(emp.id)"type="reset">Delete</button>
                         <button class="btn btn-primary" (click)="onEdit(emp.id)"type="reset">Edit</button>
