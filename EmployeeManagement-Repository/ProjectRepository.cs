@@ -33,7 +33,9 @@ namespace EmployeeManagement_Repository
             var existingPro = dbContext.Projects.Where(h => h.ProjectId == project.ProjectId).FirstOrDefault();
             if (existingPro != null)
             {
-                existingPro.ProjectName = project.ProjectName; // update only changeable properties
+                existingPro.ProjectName = project.ProjectName;
+                existingPro.ProjectDescription = project.ProjectDescription;
+                existingPro.Projectduration = project.Projectduration;// update only changeable properties
                 await this.dbContext.SaveChangesAsync();
             }
 

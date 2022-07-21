@@ -1,0 +1,11 @@
+input.ng-invalid{
+    border-left:5px solid red;
+}
+input.ng-valid{
+    border-left:5px solid rgb(24, 233, 17);
+}
+p{
+   font-style: bold;
+   font-weight: bold;
+   color: red;
+}
