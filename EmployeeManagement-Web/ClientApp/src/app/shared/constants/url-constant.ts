@@ -15,6 +15,14 @@ export class EmpolyeeURLConstants {
     static SAVEEMP=apiUrl+'/Empolyee';
     static UPDATEEMP=apiUrl+'/Empolyee';
 }
+export class ProjectURLConstants{
+    static GETALL=apiUrl +'/Project/GetAllProjects';
+    static SAVEPRG=apiUrl+'/Project';
+    static DELETE=apiUrl+'/Project';
+    static GETBYID=apiUrl+'/Project';
+    static UPDATEPRG=apiUrl+'Project';
+}
+}
 export class CompanyURLConstants{
     static GETALL=apiUrl+'/Company/GetAllCompanies';
     static SAVECMP=apiUrl+'/Company';

@@ -23,12 +23,12 @@ export class EmployeeComponent implements OnInit {
       id:[""],
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
-      gender: ["", Validators.required],
-      email: ["", Validators.required],
-      phone: ["", Validators.required],
+      gender: ["", [Validators.required]],
+      email: ["", [Validators.required,Validators.email]],
+      phone: ["",[Validators.required,Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')]],
       dateCreated: ["", Validators.required],
       dateModified: ["", Validators.required],
-      companyId: ["", Validators.required],
+      companyId: ["", [Validators.required,Validators.pattern("^[0-9]*$")]]
     });
     this.getAllEmpolyee();
     this.getAllCompany();
@@ -125,5 +125,8 @@ export class EmployeeComponent implements OnInit {
     this.employeeAddForm.value.dateCreated=''
      this.employeeAddForm.value.dateModified=''
     this.employeeAddForm.value.companyId=''
+  }
+  get val(){
+    return this.employeeAddForm.controls;
   }
 }
