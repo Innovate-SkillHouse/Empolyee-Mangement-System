@@ -45,7 +45,7 @@ export class EmployeeComponent implements OnInit {
     })
   }
   Submit() {
-
+debugger
     if (this.employeeAddForm.invalid)
       return;
 
@@ -100,8 +100,9 @@ export class EmployeeComponent implements OnInit {
 
     
 
-  }
+  
   onDelete(id: number) {
+    debugger
     this.empolyeeService.deleteEmpolyeeById(id).subscribe(data => {
       this.getAllEmpolyee();
     })

@@ -104,11 +104,6 @@ export class ProjectComponent implements OnInit {
         }
 
 
-         onDelete(id: number) {
-          this.projectService.deleteProjectById(id).subscribe(data => {
-            this.getAllProjects();
-          })
-
+        
 }
    
-}
