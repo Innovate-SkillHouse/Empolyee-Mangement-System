@@ -22,10 +22,11 @@ import { ProjectURLConstants } from "src/app/shared/constants/url-constant";
     }
     getProjectById(projectId:number)
     {
-        return this.http.get<any>(ProjectURLConstants.GETBYID,{params:{'projectId':projectId}})
+          return this.http.get<any>(ProjectURLConstants.GETBYID,{params:{'projectId':projectId}})
     }
     updateProject(project:any)
     {
-        return this.http.put<any>(ProjectURLConstants.UPDATEPRG,project)
-    }
+          return this.http.put<any>(ProjectURLConstants.UPDATEPRJ,project)
+      }
+      
 }
