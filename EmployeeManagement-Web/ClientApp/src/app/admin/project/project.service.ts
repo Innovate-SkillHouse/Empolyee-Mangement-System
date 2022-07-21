@@ -16,12 +16,16 @@ import { ProjectURLConstants } from "src/app/shared/constants/url-constant";
     saveProject(projectaddmodel:any){
         return this.http.post<any>(ProjectURLConstants.SAVEPRG,projectaddmodel)
       }
-      getProjectById(id:number)
-      {
+    deleteProjectById(projectId:number){
+        debugger
+        return this.http.delete<any>(ProjectURLConstants.DELETE,{params:{'projectId':projectId}})
+    }
+    getProjectById(projectId:number)
+    {
           return this.http.get<any>(ProjectURLConstants.GETBYID,{params:{'projectId':id}})
-      }
-      updateProject(project:any)
-      {
+    }
+    updateProject(project:any)
+    {
           return this.http.put<any>(ProjectURLConstants.UPDATEPRJ,project)
       }
       deleteProjectById(id:number){
