@@ -9,6 +9,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProjectComponent } from './project/project.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     DashboardComponent,
     EmployeeComponent,
     CompanyComponent,
+    ProjectComponent,
    
   ],
   imports: [
