@@ -52,7 +52,7 @@ namespace EmployeeManagement_Repository
         }
         public async Task<User> Login(string userEmail,string password)
         {
-            var user = dbContext.Users.SingleOrDefault(x => x.UserEmail == userEmail && x.Password == password);
+            var user = dbContext.Users.FirstOrDefault(x => x.UserEmail == userEmail && x.Password == password);
             if(user!=null)
             {
                 return user;
