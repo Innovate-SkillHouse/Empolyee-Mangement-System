@@ -28,6 +28,10 @@ namespace EmployeeManagement_Business
         }
         public async Task<HttpStatusCode> SaveProjectAsync(Project project)
         {
+            var prg = new Project();
+            prg.ProjectName = project.ProjectName;
+            prg.ProjectDescription = project.ProjectDescription;
+            prg.Projectduration = project.Projectduration;
             await projectRepository.Create(project);
             return HttpStatusCode.OK;
 

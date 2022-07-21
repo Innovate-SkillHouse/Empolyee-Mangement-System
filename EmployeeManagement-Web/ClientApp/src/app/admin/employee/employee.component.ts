@@ -32,12 +32,12 @@ debugger
   }
   getAllEmpolyee() {
     this.empolyeeService.getAllEmploye().subscribe((data) => {
-      debugger
+     
       this.empolyeedata = data;
     })
   }
   Submit() {
-    debugger
+   
     if (this.employeeAddForm.invalid)
       return;
     if(this.employeeAddForm.value.id==null)

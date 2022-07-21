@@ -10,14 +10,14 @@ import { ProjectURLConstants } from "src/app/shared/constants/url-constant";
     constructor(private http:HttpClient) {
     }
     getAllProjects(){
-        debugger
+      
         return this.http.get<any>(ProjectURLConstants.GETALL)
     }
     saveProject(projectaddmodel:any){
         return this.http.post<any>(ProjectURLConstants.SAVEPRG,projectaddmodel)
       }
     deleteProjectById(projectId:number){
-        debugger
+       
         return this.http.delete<any>(ProjectURLConstants.DELETE,{params:{'projectId':projectId}})
     }
     getProjectById(projectId:number)

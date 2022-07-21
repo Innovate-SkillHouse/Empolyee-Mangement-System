@@ -6,7 +6,7 @@ using System.Net;
 namespace EmployeeManagement_Web.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("Project")]
     public class ProjectController : ApiBaseController
     {
 
@@ -33,7 +33,7 @@ namespace EmployeeManagement_Web.Controllers
             return Ok(alumnus);
         }
 
-        [HttpPost("SaveProject")]
+        [HttpPost(Name ="SaveProject")]
         public async Task<HttpStatusCode> SaveProject(Project project)
         {
             return await projectBusiness.SaveProjectAsync(project);

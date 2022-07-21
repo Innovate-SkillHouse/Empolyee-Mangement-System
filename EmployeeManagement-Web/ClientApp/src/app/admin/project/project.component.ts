@@ -13,7 +13,7 @@ export class ProjectComponent implements OnInit {
     projectAddForm!: FormGroup;
    SearchText="";
     constructor(private projectService:ProjectService,private formBuilder: FormBuilder){
-        debugger
+  
     }
     ngOnInit(): void {
        this.SearchText="";
@@ -28,12 +28,12 @@ export class ProjectComponent implements OnInit {
   }
   getAllProjects() {
     this.projectService.getAllProjects().subscribe((data) => {
-      debugger
+     
       this.projectdata = data;
     })
   }
     Submit() {
-        debugger
+       
         if (this.projectAddForm.invalid)
           return;
          if(this.projectAddForm.value.id==null)
@@ -76,7 +76,7 @@ export class ProjectComponent implements OnInit {
         }  
         onEdit(id: number) {
           this.projectService.getProjectById(id).subscribe(data => {
-            debugger
+       
             
             this.projectAddForm.patchValue(data);
       
