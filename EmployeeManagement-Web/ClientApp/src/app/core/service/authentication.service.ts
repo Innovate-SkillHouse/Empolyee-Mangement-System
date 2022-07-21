@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
 import { map } from 'rxjs/operators';
-import { LoginURLConstants, USERURLConstants } from "src/app/shared/constants/url-constant";
+import { LoginURLConstants, ProjectURLConstanst, USERURLConstants } from "src/app/shared/constants/url-constant";
 import { BehaviorSubject, Observable } from "rxjs";
 import { AuthModel } from "src/app/login/models/login.model";
 @Injectable({ providedIn: 'root' })
@@ -51,5 +51,21 @@ export class AuthenticationService {
     //     {
     //         return await this._userBusiness.GetUserById(id);
     //     }
+    getProjectDetails(){
+        return this.http.get<any>(ProjectURLConstanst.GETPROJECTSBYID).pipe(map(project=>{
+            return project
+        }))
+    }
+    SaveProject(projectname:string, projectdescription:string){
+        var projectModel={
+            ProjectId:0,
+            ProjectName:projectname,
+            ProjectDesc:projectdescription
+        }
+        return this.http.post<any>(ProjectURLConstanst.SAVEPROJECT,projectModel).pipe(map(project=>{
+            return project
+        }))
 
+
+    }
 }
