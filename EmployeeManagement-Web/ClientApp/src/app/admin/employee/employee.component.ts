@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EmpolyeeService } from './empolyee.service';
 
 @Component({
@@ -14,19 +14,21 @@ export class EmployeeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger
+
+debugger
     this.employeeAddForm = this.formBuilder.group({
       id:[""],
       firstName: ["", Validators.required],
       lastName: ["", Validators.required],
-      gender: ["", Validators.required],
-      email: ["", Validators.required],
-      phone: ["", Validators.required],
+      gender: ["", [Validators.required]],
+      email: ["", [Validators.required,Validators.email]],
+      phone: ["",[Validators.required,Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-. (]*(\\d{3})[-. )]*(\\d{3})[-. ]*(\\d{4})(?: *x(\\d+))?\\s*$')]],
       dateCreated: ["", Validators.required],
       dateModified: ["", Validators.required],
-      companyId: ["", Validators.required],
+      companyId: ["", [Validators.required,Validators.pattern("^[0-9]*$")]]
     });
     this.getAllEmpolyee();
+  
   }
   getAllEmpolyee() {
     this.empolyeeService.getAllEmploye().subscribe((data) => {
@@ -38,9 +40,6 @@ export class EmployeeComponent implements OnInit {
     debugger
     if (this.employeeAddForm.invalid)
       return;
-
-   
-
     if(this.employeeAddForm.value.id==null)
     {
       var empaddmodel = {
@@ -88,7 +87,6 @@ export class EmployeeComponent implements OnInit {
   onEdit(id: number) {
     this.empolyeeService.getEmpolyeeById(id).subscribe(data => {
       debugger
-      
       this.employeeAddForm.patchValue(data);
 
     })
@@ -103,5 +101,8 @@ export class EmployeeComponent implements OnInit {
     this.employeeAddForm.value.dateCreated=''
      this.employeeAddForm.value.dateModified=''
     this.employeeAddForm.value.companyId==''
+  }
+  get val(){
+    return this.employeeAddForm.controls;
   }
 }

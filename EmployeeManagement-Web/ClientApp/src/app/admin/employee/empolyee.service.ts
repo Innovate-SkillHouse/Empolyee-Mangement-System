@@ -16,6 +16,7 @@ import { EmpolyeeURLConstants } from "src/app/shared/constants/url-constant";
     }
     
     deleteEmpolyeeById(id:number){
+        debugger
         return this.http.delete<any>(EmpolyeeURLConstants.DELETE,{params:{'employeeId':id}})
     }
     saveEmployee(empaddmodel:any){
