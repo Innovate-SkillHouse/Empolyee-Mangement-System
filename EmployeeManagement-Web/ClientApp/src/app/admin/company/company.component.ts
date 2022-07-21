@@ -21,10 +21,12 @@ export class CompanyComponent implements OnInit {
       companyId:[''],
       companyName: ["", Validators.required],
       companyAddress: ["", Validators.required],
-      companyPhone: ["", Validators.required],
-      
+      companyPhone: ["", [Validators.required,Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-.(]*(\\d{3})[-.)]*(\\d{3})[-.]*(\\d{4})(?: *x(\\d+))?\\s*$')]]
     });
     this.GetAllCompanies();
+  }
+  get m(){
+    return this.companyAddForm.controls;
   }
   GetAllCompanies() {
     this.companyService.GetAllCompany().subscribe((data)=>{
