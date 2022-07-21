@@ -2,7 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient } from '@angular/common/http';
 import { Router } from "@angular/router";
 import { map } from 'rxjs/operators';
-import { LoginURLConstants, USERURLConstants } from "src/app/shared/constants/url-constant";
+import { LoginURLConstants, ProjectURLConstants, USERURLConstants } from "src/app/shared/constants/url-constant";
 import { BehaviorSubject, Observable } from "rxjs";
 import { AuthModel } from "src/app/login/models/login.model";
 @Injectable({ providedIn: 'root' })
@@ -41,6 +41,7 @@ export class AuthenticationService {
         //this.currentUserSubject.next(null);
         this.router.navigate(['/login'])
     }
+ 
     // getUserById(id: number): Observable<User> {
     //     return this.http.get<User>(UserURLConstants.GET_USER_BY_ID_URL, { params: { 'id': id } })
     // }
@@ -51,5 +52,6 @@ export class AuthenticationService {
     //     {
     //         return await this._userBusiness.GetUserById(id);
     //     }
+   
 
 }

@@ -12,6 +12,7 @@ import { AuthenticationService } from '../core/service/authentication.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted: Boolean = false;
+  Invalid:Boolean=false;
 
   constructor( private formBuilder: FormBuilder,  private authenticationService: AuthenticationService,private router: Router,) { }
 
@@ -36,7 +37,9 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (data) => {
           this.router.navigate(["/admin"]);
-      
+        
+        },(error)=>{
+          this.Invalid=true
         })
         
   }

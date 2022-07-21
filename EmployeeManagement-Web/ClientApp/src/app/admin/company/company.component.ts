@@ -10,34 +10,37 @@ import { CompanyService } from './company.service';
 export class CompanyComponent implements OnInit {
   companydata: any = [];
   companyAddForm!: FormGroup;
+  SearchText="";
   constructor(private companyService: CompanyService, private formBuilder: FormBuilder) { 
 
   }
 
   ngOnInit(): void {
-    debugger
+    this.SearchText="";
     this.companyAddForm = this.formBuilder.group({
       companyId:[''],
       companyName: ["", Validators.required],
       companyAddress: ["", Validators.required],
-      companyPhone: ["", Validators.required],
-      
+      companyPhone: ["", [Validators.required,Validators.pattern('^\\s*(?:\\+?(\\d{1,3}))?[-.(]*(\\d{3})[-.)]*(\\d{3})[-.]*(\\d{4})(?: *x(\\d+))?\\s*$')]]
     });
     this.GetAllCompanies();
   }
+  get m(){
+    return this.companyAddForm.controls;
+  }
   GetAllCompanies() {
     this.companyService.GetAllCompany().subscribe((data)=>{
-      debugger
+      
       this.companydata=data;
     })
   }
   Submit() {
-    debugger
+   
     if(this.companyAddForm.invalid)
     return;
     
     if(this.companyAddForm.value.companyId==null||this.companyAddForm.value.companyId==''){
-      debugger
+      
       var comaddmodel = {
         
         companyName: this.companyAddForm.value.companyName,
@@ -62,6 +65,14 @@ export class CompanyComponent implements OnInit {
       })
     }
   }
+  searchByName(){
+    if(this.SearchText!=""){
+    this.companydata=this.companydata.filter((x:any)=>x.companyName==this.SearchText);
+  }
+  else{
+    this.GetAllCompanies();
+  }
+  }
   onDelete(companyId:number){
     this.companyService.deleteCompany(companyId).subscribe(data=>{
       this.GetAllCompanies();
@@ -69,7 +80,7 @@ export class CompanyComponent implements OnInit {
   }
   onEdit(companyId:number){
     this.companyService.getCompanyById(companyId).subscribe(data=>{
-      debugger
+      
       this.companyAddForm.patchValue(data);
     })
   }
