@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (data) => {
           this.router.navigate(["/admin"]);
-        debugger
+        
         },(error)=>{
           this.Invalid=true
         })
