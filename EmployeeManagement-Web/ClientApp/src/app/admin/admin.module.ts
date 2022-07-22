@@ -20,6 +20,7 @@ import { ProjectComponent } from './project/project.component';
     TopnavComponent,
     DashboardComponent,
     EmployeeComponent,
+    ProjectComponent,
     CompanyComponent,
     ProjectComponent,
    

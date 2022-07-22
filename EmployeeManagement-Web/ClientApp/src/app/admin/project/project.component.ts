@@ -73,12 +73,7 @@ export class ProjectComponent implements OnInit {
           })
         }
       }
-        onDelete(projectId: number) {
-          this.projectService.deleteProjectById(projectId).subscribe(data => {
-            this.getAllProjects();
-          })
-      
-        }  
+       
         searchByName(){
           if(this.SearchText!=""){
             this.projectdata=this.projectdata.filter((x:any)=>x.projectName==this.SearchText);
@@ -104,6 +99,11 @@ export class ProjectComponent implements OnInit {
         }
 
 
+         onDelete(id: number) {
+          this.projectService.deleteProjectById(id).subscribe(data => {
+            this.getAllProjects();
+          })
         
 }
    
+}
