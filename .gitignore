@@ -333,8 +333,4 @@ ASALocalRun/
 .vscode/
 .config/
 
-# old-desktop-app
-dlls/
-/src/ITTF.OVR.Web/ClientApp/**/*.map
-/src/ITTF.OVR.Web/ClientApp/**/*.js
-/src/ITTF.OVR.Web/wwwroot/assets/media
+/.angular/cache

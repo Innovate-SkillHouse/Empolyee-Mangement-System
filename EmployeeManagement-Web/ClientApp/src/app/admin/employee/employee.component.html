@@ -1,0 +1,178 @@
+<div class="right_col" role="main">
+
+
+  
+
+  <div class="x_content">
+    <br />
+    <form [formGroup]="employeeAddForm" id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" (ngSubmit)="Submit()">
+
+      <div class="form-group" >
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" >First Name <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input type="text" id="first-name" required="required" formControlName="firstName" class="form-control col-md-7 col-xs-12">
+        <div style="color: red"*ngIf="val.firstName.errors?.['required']">First Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Last Name <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input type="text" id="last-name" name="last-name" formControlName="lastName" required="required" class="form-control col-md-7 col-xs-12">
+          <div style="color: red" *ngIf="val.lastName.errors?.['required']">Last Name is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label  class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input id="Email" class="form-control col-md-7 col-xs-12" formControlName="email" type="text" >
+          <div style="color: red" *ngIf="val.email.errors?.['email']">email is required</div>
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Gender <span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input id="Gender" formControlName="gender" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+          <div style="color: red" *ngIf="val.gender.errors?.['required']">Gender is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Phone<span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input id="Gender" formControlName="phone" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+          <div style="color: red" *ngIf="val.phone.errors?.['pattern']">Phone number is Required(minimum length 10,numbers are only allowed)</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Date Created<span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input id="Gender" formControlName="dateCreated" class="date-picker form-control col-md-7 col-xs-12" required="required" type="date">
+          <div style="color: red" *ngIf="val.dateCreated.errors?.['required']">Date Created is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Date Modified<span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <input id="Gender" formControlName="dateModified" class="date-picker form-control col-md-7 col-xs-12" required="required" type="date">
+          <div style="color: red"  *ngIf="val.dateModified.errors?.['required']">Modified date is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Company Name<span class="required">*</span>
+        </label>
+        <div class="col-md-6 col-sm-6 col-xs-12">
+          <select formControlName="companyId" class="form-control">
+            <option *ngFor="let cmp of companydata" value="{{cmp.companyId}}" >{{cmp.companyName}}</option>
+          </select>
+          <div style="color: red" *ngIf="val.companyId.errors?.['pattern']">Company id is required</div>
+        </div>
+      </div>
+      <div class="ln_solid"></div>
+      <div class="form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+          <button class="btn btn-primary" type="button">Cancel</button>
+          <button class="btn btn-primary" type="reset">Reset</button>
+          <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+      </div>
+
+    </form>
+  </div>
+    <div class="">
+      <div class="page-title">
+        <div class="title_left">
+          <h3>Tables <small></small></h3>
+        </div>
+
+        <div class="title_right">
+          <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+            <div class="input-group">
+              <input type="text" class="form-control" [(ngModel)]="SearchText" placeholder="Search for...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" (click)="searchByName()" type="button">Go!</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clearfix"></div>
+
+      <div class="row">
+       
+
+
+       
+
+       
+        <div class="clearfix"></div>
+
+        <div class="col-md-12 col-sm-12 col-xs-12">
+          <div class="x_panel">
+            <div class="x_title">
+              <h2>Table design <small>Custom design</small></h2>
+              <ul class="nav navbar-right panel_toolbox">
+                <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                </li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li><a href="#">Settings 1</a>
+                    </li>
+                    <li><a href="#">Settings 2</a>
+                    </li>
+                  </ul>
+                </li>
+                <li><a class="close-link"><i class="fa fa-close"></i></a>
+                </li>
+              </ul>
+              <div class="clearfix"></div>
+            </div>
+
+            <div class="x_content">
+
+
+              <div class="table-responsive">
+                <table class="table table-striped jambo_table bulk_action">
+                  <thead>
+                    <tr class="headings">
+                      <th class="column-title">Empolyee ID </th> 
+                      <th class="column-title">FirstName </th>
+                      <th class="column-title">Company Id</th>
+                      <th class="column-title">LastName </th>
+                      <th class="column-title">Action </th>
+                      <!-- <th class="column-title no-link last"><span class="nobr">Action</span>
+                      </th> -->
+                      <th class="bulk-actions" colspan="7">
+                        <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let emp of empolyeedata"class="even pointer">
+                      <td class=" ">{{emp.id}}</td>
+                      <td class=" ">{{emp.firstName}}</td>
+                      <td class=" ">{{emp.lastName}}</td>
+                      <td class=" ">{{emp.companyId}}</td>
+                      <td>
+                        <button class="btn btn-primary" (click)="onDelete(emp.id)"type="reset">Delete</button>
+                        <button class="btn btn-primary" (click)="onEdit(emp.id)"type="reset">Edit</button>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+                      
+                  
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,44 @@
+<div > 
+    <a class="hiddenanchor" id="signup"></a>
+    <a class="hiddenanchor" id="signin"></a>
+
+    <div class="login_wrapper">
+      <div class="animate form login_form">
+        <section class="login_content">
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <h1>Login Form</h1>
+            <div>
+              <input class="form-control" formControlName="username" placeholder="Email" type="email">
+              <p *ngIf="f.username.errors?.['required']"class="text-danger">email is required</p>
+            </div>
+            <div>
+              <input class="form-control" formControlName="password" placeholder="Password" type="password">
+              <p *ngIf="f.password.errors?.['required']"class="text-danger">password is required</p>
+            </div>
+            <p *ngIf="Invalid" class="text-danger">Incorrect username or password</p>
+            <div>
+              <button type="button" type="submit" class="btn btn-default submit">Log in</button>
+
+              <!-- <a [routerLink]="['/admin']"  class="btn btn-default submit" href="index.html">Log in</a> -->
+              <a class="reset_pass" href="#">Lost your password?</a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="separator">
+              <p class="change_link">New to site?
+                <a [routerLink]="['/signup']"  class="to_register"> Create Account </a>
+              </p>
+
+              <div class="clearfix"></div>
+              <br />
+
+              
+            </div>
+          </form>
+        </section>
+      </div>
+
+ 
+    </div>
+  </div>
