@@ -32,12 +32,3 @@ export class CompanyURLConstants
     static DELETE=apiUrl+'/Company';
     static UPDATECMP=apiUrl+'/Company';
 }
-
-export class ProjectURLConstants
-{
-    static UPDATEPRJ=apiUrl +'/Project/UpdateProject';
-    static GETALL=apiUrl +'/Project/GetAllProjects';
-    static SAVEPRG=apiUrl+'/Project/SaveProject';
-    static GETBYID=apiUrl +'/Project/GetProject';
-    static DELETE=apiUrl +'/Project/DeleteProject';
-}

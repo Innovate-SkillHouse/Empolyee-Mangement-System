@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SignupService } from './signup.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
@@ -10,7 +10,7 @@ import { SignupService } from './signup.service';
 export class SignupComponent implements OnInit {
   userdata: any = [];
   userAddForm!: FormGroup;
-  constructor(private signupService: SignupService, private formBuilder: FormBuilder) {
+  constructor(private signupService: SignupService, private formBuilder: FormBuilder,private router:Router) {
   }
   
 
@@ -36,7 +36,7 @@ export class SignupComponent implements OnInit {
       }
       this.signupService.saveUser(useraddmodel).subscribe((data) => {
         debugger
-        this.userdata=data;
+        this.router.navigate(["/login"]);
       })
     }
    

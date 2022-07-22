@@ -18,6 +18,7 @@ import { ProjectURLConstants } from "src/app/shared/constants/url-constant";
       }
       getProjectById(id:number)
     {
+          return this.http.get<any>(ProjectURLConstants.GETBYID,{params:{'projectId':id}})
     }
     updateProject(project:any)
     {
