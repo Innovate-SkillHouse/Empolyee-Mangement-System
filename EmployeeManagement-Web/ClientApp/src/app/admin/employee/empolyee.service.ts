@@ -21,7 +21,7 @@ import { EmpolyeeURLConstants } from "src/app/shared/constants/url-constant";
     }
     saveEmployee(empaddmodel:any){
         return this.http.post<any>(EmpolyeeURLConstants.SAVEEMP,empaddmodel)
-      }
+    }
     getEmpolyeeById(id:number)
     {
         return this.http.get<any>(EmpolyeeURLConstants.GETBYID,{params:{'employeeId':id}})

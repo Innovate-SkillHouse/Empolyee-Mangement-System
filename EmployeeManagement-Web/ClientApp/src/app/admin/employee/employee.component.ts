@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { CompanyService } from '../company/company.service';
 import { EmpolyeeService } from './empolyee.service';
 
 @Component({
@@ -9,13 +10,15 @@ import { EmpolyeeService } from './empolyee.service';
 })
 export class EmployeeComponent implements OnInit {
   empolyeedata: any = [];
+  companydata:any=[];
   employeeAddForm!: FormGroup;
-  constructor(private empolyeeService: EmpolyeeService, private formBuilder: FormBuilder) {
+  SearchText="";
+  constructor(private empolyeeService: EmpolyeeService, private formBuilder: FormBuilder, private companyService :CompanyService) {
   }
 
   ngOnInit(): void {
 
-debugger
+    this.SearchText="";
     this.employeeAddForm = this.formBuilder.group({
       id:[""],
       firstName: ["", Validators.required],
@@ -28,19 +31,27 @@ debugger
       companyId: ["", [Validators.required,Validators.pattern("^[0-9]*$")]]
     });
     this.getAllEmpolyee();
-  
+    this.getAllCompany();
+  }
+  getAllCompany(){
+    this.companyService.GetAllCompany().subscribe((data)=>{
+      this.companydata=data;
+    })
   }
   getAllEmpolyee() {
     this.empolyeeService.getAllEmploye().subscribe((data) => {
-     
+    
       this.empolyeedata = data;
     })
   }
   Submit() {
-   
+debugger
     if (this.employeeAddForm.invalid)
       return;
-    if(this.employeeAddForm.value.id==null)
+
+   
+
+    if(this.employeeAddForm.value.id==null||this.employeeAddForm.value.id=="")
     {
       var empaddmodel = {
         firstName: this.employeeAddForm.value.firstName,
@@ -59,6 +70,7 @@ debugger
     }
     else{
       var empUpdatemodel = {
+        
         Id:this.employeeAddForm.value.id,
         firstName: this.employeeAddForm.value.firstName,
         lastName: this.employeeAddForm.value.lastName,
@@ -69,16 +81,28 @@ debugger
         dateModified: this.employeeAddForm.value.dateModified,
         companyId: this.employeeAddForm.value.companyId
       }
+      
      this.empolyeeService.updateEmpolyee(empUpdatemodel).subscribe(data=>{
       this.getAllEmpolyee();
+      
       this.resetForm();
      })
+    }
+  }
+    searchByName(){
+      if(this.SearchText!=""){
+      this.empolyeedata=this.empolyeedata.filter((x:any)=>x.firstName==this.SearchText);
+      }
+      else{
+        this.getAllEmpolyee();
+      }
     }
 
     
 
-  }
+  
   onDelete(id: number) {
+    debugger
     this.empolyeeService.deleteEmpolyeeById(id).subscribe(data => {
       this.getAllEmpolyee();
     })
@@ -86,7 +110,8 @@ debugger
   }
   onEdit(id: number) {
     this.empolyeeService.getEmpolyeeById(id).subscribe(data => {
-      debugger
+      
+      
       this.employeeAddForm.patchValue(data);
 
     })
@@ -100,7 +125,7 @@ debugger
     this.employeeAddForm.value.phone=''
     this.employeeAddForm.value.dateCreated=''
      this.employeeAddForm.value.dateModified=''
-    this.employeeAddForm.value.companyId==''
+    this.employeeAddForm.value.companyId=''
   }
   get val(){
     return this.employeeAddForm.controls;

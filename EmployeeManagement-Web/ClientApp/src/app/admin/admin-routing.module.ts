@@ -21,9 +21,9 @@ const routes: Routes = [
   component: CompanyComponent
 },
 {
-path:'Project',
-component:ProjectComponent
-}
+  path: 'Project',
+  component: ProjectComponent
+},
 ];
 
 @NgModule({

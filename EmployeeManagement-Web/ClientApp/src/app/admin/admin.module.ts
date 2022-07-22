@@ -10,6 +10,7 @@ import { EmployeeComponent } from './employee/employee.component';
 import { CompanyComponent } from './company/company.component';
 import { ProjectComponent } from './project/project.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ProjectComponent } from './project/project.component';
 
 
 @NgModule({
@@ -20,8 +21,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     TopnavComponent,
     DashboardComponent,
     EmployeeComponent,
+    ProjectComponent,
     CompanyComponent,
-   ProjectComponent
+    ProjectComponent,
+   
   ],
   imports: [
     CommonModule,

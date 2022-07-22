@@ -24,7 +24,7 @@
         </div>
       </div>
       <div class="form-group">
-        <label formControlName="email" class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
+        <label  class="control-label col-md-3 col-sm-3 col-xs-12">Email</label>
         <div class="col-md-6 col-sm-6 col-xs-12">
           <input id="Email" class="form-control col-md-7 col-xs-12" formControlName="email" type="text" >
           <div style="color: red" *ngIf="val.email.errors?.['email']">email is required</div>
@@ -64,10 +64,12 @@
         </div>
       </div>
       <div class="form-group">
-        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Company Id<span class="required">*</span>
+        <label class="control-label col-md-3 col-sm-3 col-xs-12" >Company Name<span class="required">*</span>
         </label>
         <div class="col-md-6 col-sm-6 col-xs-12">
-          <input id="Gender" formControlName="companyId" class="date-picker form-control col-md-7 col-xs-12" required="required" type="text">
+          <select formControlName="companyId" class="form-control">
+            <option *ngFor="let cmp of companydata" value="{{cmp.companyId}}" >{{cmp.companyName}}</option>
+          </select>
           <div style="color: red" *ngIf="val.companyId.errors?.['pattern']">Company id is required</div>
         </div>
       </div>
@@ -91,9 +93,9 @@
         <div class="title_right">
           <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
+              <input type="text" class="form-control" [(ngModel)]="SearchText" placeholder="Search for...">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button">Go!</button>
+                <button class="btn btn-default" (click)="searchByName()" type="button">Go!</button>
               </span>
             </div>
           </div>
@@ -152,24 +154,17 @@
                       </th>
                     </tr>
                   </thead>
-
                   <tbody>
-                    
                     <tr *ngFor="let emp of empolyeedata"class="even pointer">
                       <td class=" ">{{emp.id}}</td>
                       <td class=" ">{{emp.firstName}}</td>
-                     
                       <td class=" ">{{emp.lastName}}</td>
                       <td class=" ">{{emp.companyId}}</td>
                       <td>
                         <button class="btn btn-primary" (click)="onDelete(emp.id)"type="reset">Delete</button>
                         <button class="btn btn-primary" (click)="onEdit(emp.id)"type="reset">Edit</button>
                       </td>
-                      
                     </tr>
-                   
-                    
-                    
                   </tbody>
                 </table>
               </div>

@@ -12,12 +12,13 @@ import { AuthenticationService } from '../core/service/authentication.service';
 export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   submitted: Boolean = false;
+  Invalid:Boolean=false;
 
   constructor( private formBuilder: FormBuilder,  private authenticationService: AuthenticationService,private router: Router,) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
-      username: ["", Validators.required],
+      username: ["",Validators.required],
       password: ["", Validators.required],
     });
     debugger
@@ -36,8 +37,11 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (data) => {
           this.router.navigate(["/admin"]);
-      
+        
+        },(error)=>{
+          this.Invalid=true
         })
+        
   }
-
+  
 }
