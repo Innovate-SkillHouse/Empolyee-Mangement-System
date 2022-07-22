@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import {  ProjectURLConstanst } from "src/app/shared/constants/url-constant";
+import { ProjectURLConstants } from "src/app/shared/constants/url-constant";
 
 @Injectable({
     providedIn:'root'
@@ -10,17 +10,20 @@ import {  ProjectURLConstanst } from "src/app/shared/constants/url-constant";
     constructor(private http:HttpClient) {
     }
     getAllProjects(){
-        return this.http.get<any>(ProjectURLConstanst.GETALLPROJECTS)
+        return this.http.get<any>(ProjectURLConstants.GETALL)
     }
     saveProject(projectaddmodel:any){
-        return this.http.post<any>(ProjectURLConstanst.SAVEPROJECT,projectaddmodel)
+        return this.http.post<any>(ProjectURLConstants.SAVEPRG,projectaddmodel)
       }
       getProjectById(id:number)
       {
-          return this.http.get<any>(ProjectURLConstanst.GETPROJECTSBYID,{params:{'projectId':id}})
+          return this.http.get<any>(ProjectURLConstants.GETBYID,{params:{'projectId':id}})
       }
-    
+      updateProject(project:any)
+      {
+          return this.http.put<any>(ProjectURLConstants.UPDATEPRJ,project)
+      }
       deleteProjectById(id:number){
-        return this.http.delete<any>(ProjectURLConstanst.DELETE,{params:{'projectId':id}})
+        return this.http.delete<any>(ProjectURLConstants.DELETE,{params:{'projectId':id}})
     }
 }

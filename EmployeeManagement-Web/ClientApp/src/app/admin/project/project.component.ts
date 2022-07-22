@@ -1,79 +1,101 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthenticationService } from 'src/app/core/service/authentication.service';
-import { EmpolyeeService } from '../employee/empolyee.service';
+import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { ProjectService } from './project.service';
+
 
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
   styleUrls: ['./project.component.css']
 })
+
 export class ProjectComponent implements OnInit {
-  projectForm!: FormGroup;
-  allProjectDetails: any = [];
-  show: boolean=false;
-  Submit: boolean=true;
-  EditCheck: boolean=false;
-  companyId: any;
-  constructor(private formBuilder: FormBuilder,private authenticationService: AuthenticationService,
-    private empolyeeService: EmpolyeeService) { }
+   
+    projectdata!: any[];
+    projectAddForm!: FormGroup;
+   
 
-
-  ngOnInit(): void {
-    this.projectForm = this.formBuilder.group({
-      projectname: ["", Validators.required],
-      projectdescription: ["", Validators.required], 
-    });
-    this.getProjectDetails();
- 
-  }
-  onSubmit(){
-    debugger;
-    if(this.EditCheck == false)
-    {
-    if (this.projectForm.invalid)
-      return;
-      const projectname = this.projectForm.value.projectname;
-      const projectdescription = this.projectForm.value.projectdescription; 
-      debugger
-        this.authenticationService.SaveProject(projectname, projectdescription)
-      .subscribe(
-        (data : any) => {
-          //this.router.navigate(["/admin"]);
-          // if(confirm("Succefully Added Company Details") == true){
-          //   this.clearForm();
-          // }
-          this.show = true;
-        })
-      }
+    constructor(private projectService:ProjectService,private formBuilder: FormBuilder){
+        debugger
+    }
+    ngOnInit(): void {
+        this.projectAddForm=this.formBuilder.group({
+          projectId:[''],
+            projectName:['',Validators.required],
+            projectDescription:['',Validators.required],
+            projectduration:['',Validators.required],
+            
+        });
+        this.getAllProjects();
        
   }
-  getProjectDetails(){
-    debugger
-    this.authenticationService.getProjectDetails()
-    .subscribe(
-      (data : any) => {
-        this.allProjectDetails = data;
-      })
-  }
-  onDelete(id: number) {
-    this.empolyeeService.deleteEmpolyeeById(id).subscribe(data => {
-      this.getProjectDetails();
-    })
-
-  }
-  edit(id: number) {
-    this.empolyeeService.getEmpolyeeById(id).subscribe(data => {
-      debugger
-      
-      this.projectForm.patchValue(data);
-
-    })
-  }
-  closePopup()
+  get m ()
   {
-    this.show = !this.show; 
+   return this.projectAddForm.controls;
   }
+  get projectName(){return this.projectAddForm.get('projectName')}
+  get projectDescription(){return this.projectAddForm.get('projectDescription')}
+  get projectduration(){return this.projectAddForm.get('projectdurarion')}
+  getAllProjects() {
+    this.projectService.getAllProjects().subscribe((data) => {
+      debugger
+      this.projectdata = data;
+    })
+  }
+    Submit() {
+        debugger
+        if (this.projectAddForm.invalid)
+          return;
+       
+         if(this.projectAddForm.value.projectId==null||this.projectAddForm.value.projectId=="")
+          {
+            var projectaddmodel = {
+              projectName: this.projectAddForm.value.projectName,
+              projectDescription: this.projectAddForm.value.projectDescription,
+              projectDuration: this.projectAddForm.value.projectduration,
+            }
+          this.projectService.saveProject(projectaddmodel).subscribe((data) => {
+            this.getAllProjects();
+            this.resetForm();
+          })
+        }
+        else{
+          
+            var prjUpdatemodel = {
+              projectId:this.projectAddForm.value.projectId,
+              projectName: this.projectAddForm.value.projectName,
+              projectDescription: this.projectAddForm.value.projectDescription,
+              projectDuration: this.projectAddForm.value.projectduration,
+            }
+           this.projectService.updateProject(prjUpdatemodel).subscribe(data=>{
+            this.getAllProjects();
+            this.resetForm();
+           })
+          }
+      
+        }
+      
+        onEdit(id: number) {
+          this.projectService.getProjectById(id).subscribe(data => {
+            debugger
+            //console.log(data);
+            this.projectAddForm.patchValue(data);
+      
+          })
+        }
+        resetForm(){
+         this.projectAddForm.value.id=''
+           this.projectAddForm.value.projectName=''
+           this.projectAddForm.value.projectDescription=''
+          this.projectAddForm.value.projectduration=''
+         }
 
 
-  }
+         onDelete(id: number) {
+          this.projectService.deleteProjectById(id).subscribe(data => {
+            this.getAllProjects();
+          })
+      
+        }
+          
+}

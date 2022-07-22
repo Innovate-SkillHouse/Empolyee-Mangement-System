@@ -7,12 +7,14 @@ export class LoginURLConstants {
 export class USERURLConstants {
     static GETALL = apiUrl + '/user/GetAllUser';
 }
- export class ProjectURLConstanst {
-    static GETPROJECTSBYID  = apiUrl + '/Project/GetProjects';
-    static GETALLPROJECTS  = apiUrl + '/Project/GetAllProjects';
-    static DELETE  = apiUrl + '/Project/DeleteProjects';
-    static SAVEPROJECT = apiUrl+'/Project/SaveProject' 
- }
+export class ProjectURLConstants
+{
+    static UPDATEPRJ=apiUrl +'/Project/UpdateProject';
+    static GETALL=apiUrl +'/Project/GetAllProjects';
+    static SAVEPRG=apiUrl+'/Project/SaveProject';
+    static GETBYID=apiUrl +'/Project/GetProject';
+    static DELETE=apiUrl +'/Project/DeleteProject';
+}
  
 export class EmpolyeeURLConstants {
     static GETALL = apiUrl + '/Empolyee/GetAllEmployee';
