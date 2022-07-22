@@ -8,6 +8,15 @@ export class USERURLConstants {
     static GETALL = apiUrl + '/user/GetAllUser';
     static SAVEUSER=  apiUrl + '/user';
 }
+export class ProjectURLConstants
+{
+    static UPDATEPRJ=apiUrl +'/Project/UpdateProject';
+    static GETALL=apiUrl +'/Project/GetAllProjects';
+    static SAVEPRG=apiUrl+'/Project/SaveProject';
+    static GETBYID=apiUrl +'/Project/GetProject';
+    static DELETE=apiUrl +'/Project/DeleteProject';
+}
+ 
 export class EmpolyeeURLConstants {
     static GETALL = apiUrl + '/Empolyee/GetAllEmployee';
     static DELETE=apiUrl+'/Empolyee';  
@@ -22,13 +31,4 @@ export class CompanyURLConstants
     static GETBYID=apiUrl+'/Company';
     static DELETE=apiUrl+'/Company';
     static UPDATECMP=apiUrl+'/Company';
-}
-
-export class ProjectURLConstants
-{
-    static UPDATEPRJ=apiUrl +'/Project/UpdateProject';
-    static GETALL=apiUrl +'/Project/GetAllProjects';
-    static SAVEPRG=apiUrl+'/Project/SaveProject';
-    static GETBYID=apiUrl +'/Project/GetProject';
-    static DELETE=apiUrl +'/Project/DeleteProject';
 }
