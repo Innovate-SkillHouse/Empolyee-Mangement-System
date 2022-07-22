@@ -13,12 +13,12 @@ export class ProjectComponent implements OnInit {
    
     projectdata!: any[];
     projectAddForm!: FormGroup;
-   
-
+   SearchText="";
     constructor(private projectService:ProjectService,private formBuilder: FormBuilder){
         debugger
     }
     ngOnInit(): void {
+       this.SearchText="";
         this.projectAddForm=this.formBuilder.group({
           projectId:[''],
             projectName:['',Validators.required],
@@ -62,40 +62,53 @@ export class ProjectComponent implements OnInit {
         else{
           
             var prjUpdatemodel = {
-              projectId:this.projectAddForm.value.projectId,
+            projectId:this.projectAddForm.value.projectId,
               projectName: this.projectAddForm.value.projectName,
               projectDescription: this.projectAddForm.value.projectDescription,
               projectDuration: this.projectAddForm.value.projectduration,
-            }
+          }
            this.projectService.updateProject(prjUpdatemodel).subscribe(data=>{
             this.getAllProjects();
             this.resetForm();
-           })
-          }
-      
+          })
         }
+      }
+        onDelete(projectId: number) {
+          this.projectService.deleteProjectById(projectId).subscribe(data => {
+            this.getAllProjects();
+          })
       
+        }  
+        searchByName(){
+          if(this.SearchText!=""){
+            this.projectdata=this.projectdata.filter((x:any)=>x.projectName==this.SearchText);
+          }
+          else{
+            this.getAllProjects();
+
+            }
+        }  
         onEdit(id: number) {
           this.projectService.getProjectById(id).subscribe(data => {
             debugger
-            //console.log(data);
+            
             this.projectAddForm.patchValue(data);
       
           })
         }
         resetForm(){
-         this.projectAddForm.value.id=''
-           this.projectAddForm.value.projectName=''
-           this.projectAddForm.value.projectDescription=''
+         this.projectAddForm.value.projectId=''
+          this.projectAddForm.value.projectName=''
+          this.projectAddForm.value.projectDescription=''
           this.projectAddForm.value.projectduration=''
-         }
+        }
 
 
          onDelete(id: number) {
           this.projectService.deleteProjectById(id).subscribe(data => {
             this.getAllProjects();
           })
-      
-        }
-          
+        
+}
+   
 }

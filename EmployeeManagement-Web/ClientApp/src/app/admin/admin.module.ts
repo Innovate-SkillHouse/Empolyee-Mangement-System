@@ -22,6 +22,7 @@ import { ProjectComponent } from './project/project.component';
     EmployeeComponent,
     ProjectComponent,
     CompanyComponent,
+    ProjectComponent,
    
   ],
   imports: [

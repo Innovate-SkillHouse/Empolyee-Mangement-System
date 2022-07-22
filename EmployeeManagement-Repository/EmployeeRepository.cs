@@ -25,6 +25,7 @@ namespace EmployeeManagement_Repository
                 existingAmployee.FirstName = employee.FirstName;
                 existingAmployee.LastName = employee.LastName;
                 existingAmployee.Phone = employee.Phone;
+                existingAmployee.CompanyId= employee.CompanyId;
                     await this.dbContext.SaveChangesAsync();
             }
         }

@@ -41,6 +41,7 @@ export class AuthenticationService {
         //this.currentUserSubject.next(null);
         this.router.navigate(['/login'])
     }
+ 
     // getUserById(id: number): Observable<User> {
     //     return this.http.get<User>(UserURLConstants.GET_USER_BY_ID_URL, { params: { 'id': id } })
     // }
@@ -51,21 +52,6 @@ export class AuthenticationService {
     //     {
     //         return await this._userBusiness.GetUserById(id);
     //     }
-    getProjectDetails(){
-        return this.http.get<any>(ProjectURLConstants.GETBYID).pipe(map(project=>{
-            return project
-        }))
-    }
-    SaveProject(projectname:string, projectdescription:string){
-        var projectModel={
-            ProjectId:0,
-            ProjectName:projectname,
-            ProjectDesc:projectdescription
-        }
-        return this.http.post<any>(ProjectURLConstants.SAVEPRG,projectModel).pipe(map(project=>{
-            return project
-        }))
+   
 
-
-    }
 }
