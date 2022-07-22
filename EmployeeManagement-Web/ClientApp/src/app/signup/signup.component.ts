@@ -17,11 +17,14 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.userAddForm = this.formBuilder.group({
       firstName: ["", Validators.required],
-      userEmail: ["", Validators.required],
-      password: ["", Validators.required],
+      userEmail: ["",[Validators.required,Validators.email]],
+      password: ["", [Validators.required,Validators.pattern("^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@])[A-Za-z\d@]{8,}$")]],
       
       
     });
+  }
+  get m() {
+    return this.userAddForm.controls;
   }
   Submit() {
       var useraddmodel = {

@@ -8,13 +8,16 @@
         <form [formGroup]="userAddForm" (ngSubmit)="Submit()" >
           <h1>Sign Up Form</h1>
           <div>
-            <input class="form-control" formControlName="firstName" placeholder="First Name" type="email">
+            <p *ngIf="m.firstName.errors?.['required']"class="text-danger">FirstName is required</p>
+            <input class="form-control" formControlName="firstName" placeholder="First Name" type="email" >
           </div>
           <div>
             <input class="form-control" formControlName="userEmail"placeholder="Email" type="email">
+            <p *ngIf="m.userEmail.errors?.['required']"class="text-danger">email is required</p>
           </div>
           <div>
             <input class="form-control" formControlName="password" placeholder="Password" type="password">
+            <p *ngIf="m.password.errors?.['required']"class="text-danger">password is required</p>
           </div>
          
           <div>
